@@ -25,7 +25,6 @@ def parse_status(packet_type, body):
     body, result = parse_timestamp(body, packet_type)
 
     result.update({
-        'format': 'status',
         'status': body.strip(' ')
         })
 
