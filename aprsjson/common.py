@@ -83,6 +83,10 @@ def parse_comment(body, parsed):
 
     body = _parse_dao(body, parsed)
 
+    if len(body) > 0 and body[0] == "/":
+        body = body[1:]
+    parsed.update({'comment': body.strip(' ')})
+
 def _parse_data_extensions(body):
     parsed = {}
     match = re.findall(r"^([0-9 .]{3})/([0-9 .]{3})", body)
