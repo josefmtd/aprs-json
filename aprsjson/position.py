@@ -14,7 +14,7 @@ __all__ = [
 
 def parse_position(packet_type, body):
     parsed = {}
-    if packet_type not in '!=/@;':
+    if packet_type not in '!=/@':
         _, body = body.split('!', 1)
         packet_type = '!'
 

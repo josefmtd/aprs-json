@@ -41,7 +41,7 @@ def _attempt_to_parse(frame, aprs_dict):
     packet_type = body[0]
     body = body[1:]
 
-    if packet_type in "'#$%)*<?T[},`'":
+    if packet_type in "'#$%)*<?T[},`';":
         raise UnknownFormat('Format is not yet supported')
 
     # User defined
@@ -65,7 +65,7 @@ def _attempt_to_parse(frame, aprs_dict):
         body, result = parse_weather(body)
 
     # Position report
-    elif (packet_type in '!=/@' or 0 <= body.find('!') < 40):
+    elif (packet_type in '!=/@'):
         body, result = parse_position(packet_type, body)
 
     aprs_dict.update(result)
