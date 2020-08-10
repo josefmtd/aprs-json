@@ -58,7 +58,7 @@ def parse_position(packet_type, body):
             raise ParseError("invalid position format")
     # check comment for weather information
     # Page 62 of the spec
-    if parsed['symbol'] == '_':
+    if parsed['symbol'][1] == '_':
         logger.debug("Attempting to parse weather report from comment")
         body, result = parse_weather_data(body)
         parsed.update({
