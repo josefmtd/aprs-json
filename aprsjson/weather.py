@@ -27,13 +27,13 @@ key_map = {
 }
 
 val_map = {
-    'g': lambda x: int(x) * wind_multiplier,
+    'g': lambda x: int(x) * WIND_MULT,
     'c': lambda x: int(x),
-    'S': lambda x: int(x) * wind_multiplier,
+    'S': lambda x: int(x) * WIND_MULT,
     't': lambda x: (float(x) - 32) / 1.8,
-    'r': lambda x: int(x) * rain_multiplier,
-    'p': lambda x: int(x) * rain_multiplier,
-    'P': lambda x: int(x) * rain_multiplier,
+    'r': lambda x: int(x) * RAIN_MULT,
+    'p': lambda x: int(x) * RAIN_MULT,
+    'P': lambda x: int(x) * RAIN_MULT,
     'h': lambda x: int(x),
     'b': lambda x: float(x) / 10,
     'l': lambda x: int(x) + 1000,
