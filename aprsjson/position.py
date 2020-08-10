@@ -14,26 +14,6 @@ __all__ = [
 
 def parse_position(packet_type, body):
     parsed = {}
-    if packet_type not in '!=/@':
-        _, body = body.split('!', 1)
-        packet_type = '!'
-
-    if packet_type == ';':
-        logger.debug("Attempting to parse object report format")
-        match = re.findall(r"^([ -~]{9})(\*|_)", body)
-        if match:
-            name, flag = match[0]
-            parsed.update({
-                'object_name': name,
-                'alive': flag == '*',
-                })
-
-            body = body[10:]
-        else:
-            raise ParseError("invalid format")
-    # else:
-    #     parsed.update({"messagecapable": packet_type in '@='})
-
     # decode timestamp
     if packet_type in "/@;":
         body, result = parse_timestamp(body, packet_type)
@@ -68,13 +48,7 @@ def parse_position(packet_type, body):
     else:
         # decode comment
         parse_comment(body, parsed)
-
-    if packet_type == ';':
-        parsed.update({
-            'object_format': parsed['format'],
-            'format': 'object',
-            })
-
+    
     return ('', parsed)
 
 def parse_compressed(body):
